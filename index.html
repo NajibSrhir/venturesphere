@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VentureSphere | Investissements Premium dans les Startups</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0A1A35',
+                        secondary: '#D4AF37',
+                        accent: '#1E3A8A',
+                        light: '#F8FAFC',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #0A1A35 0%, #1E3A8A 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        .score-badge {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .tag {
+            transition: all 0.2s ease;
+        }
+        .tag:hover {
+            background-color: #D4AF37;
+            color: #0A1A35;
+        }
+        .filter-option {
+            transition: all 0.2s ease;
+        }
+        .filter-option:hover {
+            background-color: #D4AF37;
+            color: #0A1A35;
+        }
+        .filter-option.active {
+            background-color: #D4AF37;
+            color: #0A1A35;
+        }
+    </style>
+</head>
+<body class="bg-primary text-light min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg py-6 px-4 md:px-8 lg:px-12 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-cubes text-secondary text-2xl"></i>
+                <h1 class="text-2xl font-bold">Venture<span class="text-secondary">Sphere</span></h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="hover:text-secondary transition">Tableau de bord</a>
+                <a href="#" class="text-secondary font-medium">Startups</a>
+                <a href="#" class="hover:text-secondary transition">Portefeuille</a>
+                <a href="#" class="hover:text-secondary transition">Analyses</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button class="hidden md:block bg-secondary text-primary px-4 py-2 rounded-full font-medium hover:bg-opacity-90 transition">
+                    Investir maintenant
+                </button>
+                <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center cursor-pointer">
+                    <i class="fas fa-user text-light"></i>
+                </div>
+                <button class="md:hidden text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 md:px-8 lg:px-12 py-8">
+        <!-- Page Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+            <div>
+                <h2 class="text-3xl font-bold mb-2">Investissements Premium dans les Startups</h2>
+                <p class="text-gray-300">Découvrez des startups à fort potentiel validées par notre équipe d'experts</p>
+            </div>
+            <div class="mt-4 md:mt-0 flex space-x-3">
+                <div class="relative">
+                    <input type="text" placeholder="Rechercher des startups..." class="bg-accent text-light px-4 py-2 rounded-full pl-10 w-full md:w-64 focus:outline-none focus:ring-2 focus:ring-secondary">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+                <button class="bg-secondary text-primary px-4 py-2 rounded-full font-medium hover:bg-opacity-90 transition flex items-center">
+                    <i class="fas fa-sliders-h mr-2"></i> Filtres
+                </button>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="bg-accent rounded-xl p-4 mb-8">
+            <div class="flex flex-wrap gap-3">
+                <!-- Sector Filter -->
+                <div class="relative">
+                    <select class="bg-primary text-light px-4 py-2 rounded-full pr-8 appearance-none focus:outline-none focus:ring-2 focus:ring-secondary">
+                        <option value="">Tous les secteurs</option>
+                        <option value="fintech">Fintech</option>
+                        <option value="healthtech">Santé</option>
+                        <option value="edtech">Éducation</option>
+                        <option value="ai">Intelligence Artificielle</option>
+                        <option value="blockchain">Blockchain</option>
+                        <option value="saas">SaaS</option>
+                    </select>
+                    <i class="fas fa-chevron-down absolute right-3 top-3 text-gray-400 pointer-events-none"></i>
+                </div>
+                
+                <!-- Stage Filter -->
+                <div class="flex space-x-1 bg-primary rounded-full p-1">
+                    <button class="filter-option active px-4 py-1 rounded-full text-sm">Tous les stades</button>
+                    <button class="filter-option px-4 py-1 rounded-full text-sm">Amorçage</button>
+                    <button class="filter-option px-4 py-1 rounded-full text-sm">Série A</button>
+                    <button class="filter-option px-4 py-1 rounded-full text-sm">Série B+</button>
+                </div>
+                
+                <!-- Score Filter -->
+                <div class="flex items-center space-x-2">
+                    <span class="text-gray-300 text-sm">Score :</span>
+                    <div class="flex space-x-1">
+                        <button class="filter-option px-3 py-1 rounded-full text-sm">7+</button>
+                        <button class="filter-option px-3 py-1 rounded-full text-sm">8+</button>
+                        <button class="filter-option px-3 py-1 rounded-full text-sm">9+</button>
+                    </div>
+                </div>
+                
+                <!-- Investment Range -->
+                <div class="flex items-center space-x-2">
+                    <span class="text-gray-300 text-sm">Investissement :</span>
+                    <div class="flex space-x-1">
+                        <button class="filter-option px-3 py-1 rounded-full text-sm">25k€+</button>
+                        <button class="filter-option px-3 py-1 rounded-full text-sm">50k€+</button>
+                        <button class="filter-option px-3 py-1 rounded-full text-sm">100k€+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Startup Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Startup Cards -->
+            <!-- ... Les cartes de startups existantes ... -->
+        </div>
+
+        <!-- Pagination -->
+        <div class="flex justify-center mt-12">
+            <nav class="flex items-center space-x-2">
+                <button class="w-10 h-10 rounded-full bg-accent flex items-center justify-center hover:bg-secondary hover:text-primary transition">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="w-10 h-10 rounded-full bg-secondary text-primary flex items-center justify-center font-medium">1</button>
+                <button class="w-10 h-10 rounded-full bg-accent flex items-center justify-center hover:bg-secondary hover:text-primary transition">2</button>
+                <button class="w-10 h-10 rounded-full bg-accent flex items-center justify-center hover:bg-secondary hover:text-primary transition">3</button>
+                <span class="px-2">...</span>
+                <button class="w-10 h-10 rounded-full bg-accent flex items-center justify-center hover:bg-secondary hover:text-primary transition">8</button>
+                <button class="w-10 h-10 rounded-full bg-accent flex items-center justify-center hover:bg-secondary hover:text-primary transition">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </nav>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="gradient-bg py-12 px-4 md:px-8 lg:px-12 mt-12">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- ... Le contenu du footer ... -->
+            </div>
+            <div class="border-t border-primary mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2023 VentureSphere. Tous droits réservés.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-secondary transition text-sm">Politique de confidentialité</a>
+                    <a href="#" class="text-gray-400 hover:text-secondary transition text-sm">Conditions d'utilisation</a>
+                    <a href="#" class="text-gray-400 hover:text-secondary transition text-sm">Politique des cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterOptions = document.querySelectorAll('.filter-option');
+            filterOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    const parent = this.parentElement;
+                    parent.querySelectorAll('.filter-option').forEach(opt => {
+                        opt.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    console.log('Filtre appliqué:', this.textContent.trim());
+                });
+            });
+            
+            const mobileMenuButton = document.querySelector('.md\\:hidden.text-2xl');
+            mobileMenuButton.addEventListener('click', function() {
+                console.log('Menu mobile basculé');
+            });
+        });
+    </script>
+</body>
+</html>
